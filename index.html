@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distribuidora Fabián – Tu Distribuidora de Confianza en Belleza Profesional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #c8586c;
+    --rose-light: #e07b8a;
+    --rose-pale: #fce9ec;
+    --gold: #c9a96e;
+    --gold-light: #e2c68f;
+    --cream: #fdf6f0;
+    --dark: #1a1010;
+    --dark-soft: #2d1c1c;
+    --text: #3d2a2a;
+    --text-muted: #7a5c5c;
+    --white: #ffffff;
+    --nav-h: 70px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rose) var(--rose-pale);
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--rose-pale); }
+  ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 99px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CURSOR ── */
+  #cursor {
+    position: fixed; width: 14px; height: 14px;
+    background: var(--rose); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: width .2s, height .2s, background .2s;
+    mix-blend-mode: multiply;
+  }
+  #cursor-ring {
+    position: fixed; width: 36px; height: 36px;
+    border: 1.5px solid var(--rose); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: all .12s ease-out;
+    opacity: 0.6;
+  }
+  a:hover ~ #cursor, button:hover ~ #cursor { width: 24px; height: 24px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--nav-h); z-index: 1000;
+    display: flex; align-items: center;
+    padding: 0 5%;
+    transition: background .4s, backdrop-filter .4s, box-shadow .4s;
+  }
+  nav.scrolled {
+    background: rgba(253,246,240,0.92);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 20px rgba(200,88,108,0.08);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--dark); text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .nav-logo span { color: var(--rose); }
+  .nav-links {
+    margin-left: auto; display: flex; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: .85rem; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--text);
+    text-decoration: none; position: relative;
+    transition: color .3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1.5px; background: var(--rose);
+    transition: width .3s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    margin-left: 2rem;
+    background: var(--rose); color: white !important;
+    padding: .45rem 1.2rem; border-radius: 99px;
+    font-size: .8rem !important;
+    transition: background .3s, transform .2s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--rose-light) !important; transform: translateY(-1px); }
+
+  /* hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; margin-left: auto; }
+  .hamburger span { width: 24px; height: 2px; background: var(--dark); display: block; transition: all .3s; }
+  @media(max-width:768px){
+    .nav-links { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 1.5rem 5%; gap: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .nav-cta { margin-left: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding-top: var(--nav-h);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 0;
+    overflow: hidden; position: relative;
+  }
+  .hero-bg-decor {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--cream) 50%, var(--rose-pale) 100%);
+    z-index: 0;
+  }
+  .hero-blob {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,88,108,.12) 0%, transparent 70%);
+    top: -100px; right: -100px; border-radius: 50%; z-index: 0;
+    animation: blobPulse 6s ease-in-out infinite;
+  }
+  @keyframes blobPulse {
+    0%,100% { transform: scale(1); opacity: .5; }
+    50% { transform: scale(1.1); opacity: .8; }
+  }
+
+  .hero-left {
+    padding: 6rem 5% 4rem 8%;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(200,88,108,.1); border: 1px solid rgba(200,88,108,.25);
+    color: var(--rose); font-size: .78rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .35rem .9rem; border-radius: 99px;
+    margin-bottom: 1.5rem;
+    opacity: 0; transform: translateY(20px);
+    animation: heroFadeUp .6s .2s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--dark); letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+    opacity: 0; transform: translateY(30px);
+    animation: heroFadeUp .7s .35s forwards;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--rose);
+    font-family: 'Playfair Display', serif;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem; color: var(--text-muted); line-height: 1.7;
+    max-width: 420px; margin-bottom: 2.5rem;
+    opacity: 0; transform: translateY(20px);
+    animation: heroFadeUp .7s .5s forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; transform: translateY(20px);
+    animation: heroFadeUp .7s .65s forwards;
+  }
+  .btn-primary {
+    background: var(--rose); color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 600;
+    padding: .85rem 2rem; border-radius: 50px;
+    text-decoration: none; border: none;
+    transition: all .3s; display: inline-flex; align-items: center; gap: .5rem;
+    box-shadow: 0 4px 20px rgba(200,88,108,.3);
+  }
+  .btn-primary:hover { background: var(--rose-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,88,108,.4); }
+  .btn-secondary {
+    background: transparent; color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 500;
+    padding: .85rem 2rem; border-radius: 50px;
+    text-decoration: none; border: 1.5px solid rgba(61,42,42,.25);
+    transition: all .3s; display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-secondary:hover { border-color: var(--rose); color: var(--rose); transform: translateY(-2px); }
+
+  /* Instagram card */
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center;
+    padding: 4rem 8% 4rem 2%;
+  }
+  .ig-card {
+    width: 320px; background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(61,42,42,.12), 0 4px 16px rgba(200,88,108,.08);
+    overflow: hidden;
+    opacity: 0; transform: translateY(40px) scale(.96);
+    animation: heroFadeUp .8s .7s forwards;
+    position: relative;
+  }
+  .ig-card-header {
+    background: linear-gradient(135deg, var(--dark-soft), #4a2030);
+    padding: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .ig-card-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .ig-profile-row { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+  .ig-avatar-ring {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: conic-gradient(from 0deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
+    padding: 2.5px; flex-shrink: 0;
+    animation: ringRotate 4s linear infinite;
+  }
+  @keyframes ringRotate { to { transform: rotate(360deg); } }
+  .ig-avatar-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose-pale), #f9d9df);
+    border: 2.5px solid white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900; color: var(--rose);
+    overflow: hidden;
+  }
+  .ig-name-block h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 700; color: white;
+    display: flex; align-items: center; gap: .3rem;
+  }
+  .ig-verified {
+    width: 16px; height: 16px;
+    background: linear-gradient(135deg, #1d8cf8, #0070f3);
+    border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ig-verified svg { width: 10px; height: 10px; }
+  .ig-handle { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: .1rem; }
+  .ig-stats { display: flex; justify-content: space-between; margin-bottom: .8rem; }
+  .ig-stat { text-align: center; }
+  .ig-stat-num { font-size: 1rem; font-weight: 700; color: white; display: block; }
+  .ig-stat-label { font-size: .65rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .05em; }
+  .ig-bio { font-size: .75rem; color: rgba(255,255,255,.8); line-height: 1.5; margin-bottom: .8rem; }
+  .ig-buttons { display: flex; gap: .5rem; }
+  .ig-btn {
+    flex: 1; padding: .4rem; border-radius: 8px; border: none;
+    font-size: .72rem; font-weight: 600; cursor: pointer;
+    transition: all .2s;
+  }
+  .ig-btn-primary { background: rgba(255,255,255,.15); color: white; backdrop-filter: blur(4px); }
+  .ig-btn-primary:hover { background: rgba(255,255,255,.25); }
+  .ig-btn-secondary { background: rgba(255,255,255,.08); color: rgba(255,255,255,.8); }
+
+  .ig-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+    background: rgba(61,42,42,.05);
+  }
+  .ig-grid-item {
+    aspect-ratio: 1/1; overflow: hidden; cursor: pointer;
+    position: relative;
+  }
+  .ig-grid-item::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,88,108,.6), rgba(201,169,110,.4));
+    opacity: 0; transition: opacity .3s;
+  }
+  .ig-grid-item:hover::after { opacity: 1; }
+  .ig-grid-item-bg {
+    width: 100%; height: 100%;
+    transition: transform .4s;
+  }
+  .ig-grid-item:hover .ig-grid-item-bg { transform: scale(1.1); }
+
+  /* floating stats */
+  .hero-float-stat {
+    position: absolute;
+    background: white; border-radius: 14px;
+    padding: .7rem 1rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,.1);
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .78rem; font-weight: 600; color: var(--dark);
+    white-space: nowrap;
+  }
+  .stat-icon { font-size: 1rem; }
+  .stat-val { color: var(--rose); font-size: 1rem; font-weight: 700; }
+  .float-1 { top: 15%; right: -30px; animation: float 3s ease-in-out infinite; }
+  .float-2 { bottom: 25%; left: -30px; animation: float 3.5s ease-in-out infinite .8s; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes heroFadeUp {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 5%; max-width: 1280px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block;
+    font-size: .72rem; font-weight: 700; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--rose);
+    margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 900; color: var(--dark);
+    line-height: 1.15; letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--text-muted); line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ── MARCAS STRIP ── */
+  .marcas-strip {
+    background: var(--dark-soft);
+    padding: 1.5rem 5%;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .marcas-track {
+    display: flex; gap: 3rem; align-items: center;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .marca-pill {
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 99px; padding: .4rem 1.2rem;
+    font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.7);
+    letter-spacing: .06em; text-transform: uppercase; flex-shrink: 0;
+  }
+  .marca-pill.accent { border-color: rgba(200,88,108,.4); color: var(--rose-light); }
+
+  /* ── NOSOTROS ── */
+  .nosotros-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .nosotros-visual {
+    position: relative; height: 500px;
+  }
+  .nosotros-img-main {
+    width: 75%; height: 85%; position: absolute;
+    bottom: 0; right: 0;
+    border-radius: 24px; overflow: hidden;
+  }
+  .nosotros-img-main-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #e8b4bc, var(--rose), #a0405a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .nosotros-img-accent {
+    width: 55%; height: 50%; position: absolute;
+    top: 0; left: 0;
+    border-radius: 20px; overflow: hidden;
+    border: 4px solid var(--cream);
+    box-shadow: 0 8px 30px rgba(0,0,0,.1);
+    z-index: 2;
+  }
+  .nosotros-img-accent-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--rose-pale), #f0c8d0, var(--rose));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+  }
+  .nosotros-badge {
+    position: absolute; bottom: 20px; left: 20px; z-index: 3;
+    background: white; border-radius: 16px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,.1);
+    text-align: center;
+  }
+  .nosotros-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: var(--rose);
+    line-height: 1;
+  }
+  .nosotros-badge-text { font-size: .72rem; color: var(--text-muted); font-weight: 500; margin-top: .2rem; }
+
+  .stats-row { display: flex; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .stat-block { }
+  .stat-block-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--dark);
+  }
+  .stat-block-num span { color: var(--rose); }
+  .stat-block-desc { font-size: .8rem; color: var(--text-muted); font-weight: 500; margin-top: .15rem; }
+
+  .pills-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+  .pill {
+    background: var(--rose-pale); color: var(--rose);
+    border: 1px solid rgba(200,88,108,.2);
+    font-size: .78rem; font-weight: 600;
+    padding: .35rem .9rem; border-radius: 99px;
+  }
+
+  /* ── PRODUCTOS ── */
+  .productos-section { background: linear-gradient(180deg, var(--cream), var(--rose-pale) 50%, var(--cream)); max-width: 100%; padding: 6rem 0; }
+  .productos-inner { max-width: 1280px; margin: 0 auto; padding: 0 5%; }
+  .productos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+
+  .product-card {
+    background: white; border-radius: 20px;
+    overflow: hidden; cursor: pointer;
+    transition: transform .3s, box-shadow .3s;
+    box-shadow: 0 2px 16px rgba(61,42,42,.06);
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(200,88,108,.15); }
+  .product-card-img {
+    height: 180px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+  }
+  .product-card-body { padding: 1.2rem; }
+  .product-tag {
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--rose); margin-bottom: .4rem;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--dark);
+    margin-bottom: .4rem; line-height: 1.3;
+  }
+  .product-desc { font-size: .78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: .8rem; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-cta {
+    background: var(--rose); color: white; border: none;
+    font-size: .75rem; font-weight: 600;
+    padding: .4rem 1rem; border-radius: 99px;
+    cursor: pointer; transition: all .2s;
+    text-decoration: none;
+  }
+  .product-cta:hover { background: var(--rose-light); transform: scale(1.05); }
+  .product-badge {
+    font-size: .68rem; background: var(--rose-pale);
+    color: var(--rose); font-weight: 600;
+    padding: .25rem .6rem; border-radius: 99px;
+  }
+
+  /* ── TIMELINE / HOW ── */
+  .como-section { }
+  .como-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .steps-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
+  .step {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.2rem; border-radius: 16px;
+    border: 1px solid transparent;
+    transition: all .3s; cursor: default;
+  }
+  .step:hover { background: white; border-color: rgba(200,88,108,.15); box-shadow: 0 4px 20px rgba(200,88,108,.08); }
+  .step-num {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--rose), #a0405a);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 900; color: white;
+  }
+  .step-title { font-weight: 700; color: var(--dark); margin-bottom: .3rem; }
+  .step-desc { font-size: .83rem; color: var(--text-muted); line-height: 1.6; }
+
+  .como-right { position: relative; }
+  .como-big-card {
+    background: linear-gradient(135deg, var(--dark-soft), #3d1020);
+    border-radius: 28px; padding: 2.5rem;
+    color: white; position: relative; overflow: hidden;
+  }
+  .como-big-card::before {
+    content: ''; position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(200,88,108,.3), transparent);
+    top: -50px; right: -50px; border-radius: 50%;
+  }
+  .como-card-label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--rose-light); margin-bottom: .8rem; }
+  .como-card-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 1rem; }
+  .como-card-title em { font-style: italic; color: var(--gold-light); }
+  .como-card-desc { font-size: .88rem; line-height: 1.7; color: rgba(255,255,255,.7); margin-bottom: 2rem; }
+  .como-card-feat { display: flex; flex-direction: column; gap: .7rem; }
+  .como-feat { display: flex; align-items: center; gap: .8rem; font-size: .83rem; color: rgba(255,255,255,.85); }
+  .como-feat-icon { width: 24px; height: 24px; background: rgba(200,88,108,.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .7rem; flex-shrink: 0; }
+
+  /* ── GALERIA ── */
+  .galeria-section { background: var(--dark-soft); max-width: 100%; padding: 6rem 5%; color: white; }
+  .galeria-inner { max-width: 1280px; margin: 0 auto; }
+  .galeria-section .section-title { color: white; }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 12px; margin-top: 2.5rem;
+  }
+  .galeria-item {
+    border-radius: 16px; overflow: hidden;
+    cursor: pointer; position: relative;
+  }
+  .galeria-item:first-child { grid-row: 1 / 3; }
+  .galeria-bg {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; transition: transform .5s;
+  }
+  .galeria-item:hover .galeria-bg { transform: scale(1.06); }
+  .galeria-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,16,16,.7), transparent);
+    opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 1rem;
+  }
+  .galeria-item:hover .galeria-overlay { opacity: 1; }
+  .galeria-overlay span { color: white; font-size: .78rem; font-weight: 600; }
+
+  /* ── TESTIMONIOS ── */
+  .testimonios-section { }
+  .testimonios-header { text-align: center; margin-bottom: 3.5rem; }
+  .testimonios-header .section-sub { margin: 0 auto; }
+  .testimonios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimonial-card {
+    background: white; border-radius: 20px;
+    padding: 1.8rem; position: relative;
+    box-shadow: 0 2px 16px rgba(61,42,42,.06);
+    transition: transform .3s, box-shadow .3s;
+    border: 1px solid rgba(200,88,108,.08);
+  }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(200,88,108,.12); }
+  .t-quote { font-size: 3rem; color: var(--rose); line-height: .8; margin-bottom: 1rem; font-family: 'Playfair Display', serif; font-weight: 900; opacity: .3; }
+  .t-text { font-size: .88rem; color: var(--text); line-height: 1.7; margin-bottom: 1.5rem; }
+  .t-author { display: flex; align-items: center; gap: .7rem; }
+  .t-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+  .t-name { font-weight: 700; font-size: .85rem; color: var(--dark); }
+  .t-role { font-size: .72rem; color: var(--text-muted); }
+  .t-stars { color: var(--gold); font-size: .85rem; margin-bottom: .6rem; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--rose), #8a2040, var(--dark-soft));
+    border-radius: 28px; padding: 4rem; text-align: center; position: relative; overflow: hidden;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .cta-banner::before {
+    content: ''; position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,169,110,.2), transparent);
+    top: -100px; left: -100px; border-radius: 50%;
+  }
+  .cta-banner::after {
+    content: ''; position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,.06), transparent);
+    bottom: -50px; right: -50px; border-radius: 50%;
+  }
+  .cta-banner-label { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .8rem; }
+  .cta-banner-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 900; color: white; margin-bottom: 1rem; line-height: 1.2; }
+  .cta-banner-title em { font-style: italic; color: var(--gold-light); }
+  .cta-banner-sub { font-size: .95rem; color: rgba(255,255,255,.7); margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-banner-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-white { background: white; color: var(--rose); font-family: 'DM Sans'; font-weight: 700; font-size: .9rem; padding: .85rem 2rem; border-radius: 50px; text-decoration: none; transition: all .3s; display: inline-flex; align-items: center; gap: .5rem; }
+  .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.15); }
+  .btn-outline-white { background: transparent; color: white; font-family: 'DM Sans'; font-weight: 600; font-size: .9rem; padding: .85rem 2rem; border-radius: 50px; text-decoration: none; border: 1.5px solid rgba(255,255,255,.4); transition: all .3s; display: inline-flex; align-items: center; gap: .5rem; }
+  .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,.08); transform: translateY(-2px); }
+
+  /* ── CONTACTO ── */
+  .contacto-section { }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; padding: .85rem 1rem;
+    border: 1.5px solid rgba(61,42,42,.15); border-radius: 12px;
+    font-family: 'DM Sans'; font-size: .9rem; color: var(--dark);
+    background: white; margin-bottom: 1rem;
+    transition: border-color .3s, box-shadow .3s;
+    outline: none;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(200,88,108,.1); }
+  .contact-form textarea { height: 120px; resize: vertical; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-info-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-icon { width: 44px; height: 44px; background: var(--rose-pale); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-info-label { font-weight: 700; font-size: .85rem; color: var(--dark); margin-bottom: .2rem; }
+  .contact-info-val { font-size: .85rem; color: var(--text-muted); }
+  .contact-info-val a { color: var(--rose); text-decoration: none; }
+  .social-row { display: flex; gap: .8rem; margin-top: 2rem; }
+  .social-btn {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; text-decoration: none;
+    transition: all .2s; border: 1px solid rgba(61,42,42,.12);
+  }
+  .social-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .social-ig { background: linear-gradient(135deg, #e1306c, #833ab4); color: white; border: none; }
+  .social-wa { background: #25D366; color: white; border: none; }
+  .social-fb { background: #1877f2; color: white; border: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,.6);
+    padding: 3rem 5%; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: .5rem;
+  }
+  .footer-logo span { color: var(--rose); }
+  .footer-tagline { font-size: .82rem; margin-bottom: 2rem; }
+  .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .footer-links a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .8rem; transition: color .2s; }
+  .footer-links a:hover { color: var(--rose); }
+  .footer-divider { width: 100%; height: 1px; background: rgba(255,255,255,.08); margin-bottom: 1.5rem; }
+  .footer-copy { font-size: .75rem; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,.4);
+    animation: waPulse 2s ease-in-out infinite;
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes waPulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,.7); }
+  }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .stagger { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .stagger.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:1024px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: calc(var(--nav-h) + 2rem); }
+    .hero-right { padding: 0 8% 4rem; }
+    .hero-left { padding: 4rem 8%; }
+    .nosotros-grid, .como-grid, .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .nosotros-visual { height: 350px; }
+    .testimonios-grid { grid-template-columns: 1fr 1fr; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+    .galeria-item:first-child { grid-row: auto; }
+    .float-1, .float-2 { display: none; }
+  }
+  @media(max-width:640px) {
+    section { padding: 4rem 5%; }
+    .testimonios-grid { grid-template-columns: 1fr; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; }
+    .cta-banner { padding: 2.5rem 1.5rem; border-radius: 20px; }
+    .produtos-header { flex-direction: column; align-items: flex-start; }
+    .ig-card { width: 100%; max-width: 320px; }
+  }
+
+  /* Price tag */
+  .price-tag {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: linear-gradient(135deg, var(--rose), #a0405a);
+    color: white; font-size: .75rem; font-weight: 700;
+    padding: .3rem .7rem; border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5492227537300?text=Hola!%20Vi%20su%20web%20y%20quisiera%20consultar%20sobre%20sus%20productos%20💆🏼‍♀️" class="wa-float" target="_blank" title="Consultanos por WhatsApp">💬</a>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Distribuidora <span>Fabián</span></a>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#como">¿Cómo Comprás?</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
+    <li><a href="#contacto" class="nav-cta">Consultá Ahora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-decor"></div>
+  <div class="hero-blob"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">✨ Tu distribuidora de confianza</div>
+    <h1 class="hero-title">
+      Todo lo que<br>tu salón <em>necesita,</em><br>en un lugar
+    </h1>
+    <p class="hero-subtitle">
+      Distribuidores mayoristas y minoristas de productos de peluquería, cosmética y belleza profesional. Primont, Nouvelle, IDI Make Up y más. 💆🏼‍♀️
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20ver%20el%20cat%C3%A1logo%20completo%20💆🏼‍♀️" class="btn-primary" target="_blank">
+        💬 Ver Catálogo
+      </a>
+      <a href="#productos" class="btn-secondary">
+        🛍️ Explorar Productos
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Floating stats -->
+    <div class="hero-float-stat float-1">
+      <span class="stat-icon">📦</span>
+      <div>
+        <div class="stat-val">207</div>
+        <div style="font-size:.65rem;color:var(--text-muted);font-weight:500">publicaciones</div>
+      </div>
+    </div>
+    <div class="hero-float-stat float-2">
+      <span class="stat-icon">❤️</span>
+      <div>
+        <div class="stat-val">1.173</div>
+        <div style="font-size:.65rem;color:var(--text-muted);font-weight:500">seguidores IG</div>
+      </div>
+    </div>
+
+    <!-- Instagram Card -->
+    <div class="ig-card">
+      <div class="ig-card-header">
+        <div class="ig-profile-row">
+          <div class="ig-avatar-ring">
+            <div class="ig-avatar-inner">
+              DF
+            </div>
+          </div>
+          <div class="ig-name-block">
+            <h3>
+              Distribuidora Fabián
+              <span class="ig-verified">
+                <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </h3>
+            <div class="ig-handle">@distribuidora_fabian</div>
+          </div>
+        </div>
+        <div class="ig-stats">
+          <div class="ig-stat">
+            <span class="ig-stat-num">207</span>
+            <span class="ig-stat-label">Posts</span>
+          </div>
+          <div class="ig-stat">
+            <span class="ig-stat-num">1.173</span>
+            <span class="ig-stat-label">Seguidores</span>
+          </div>
+          <div class="ig-stat">
+            <span class="ig-stat-num">923</span>
+            <span class="ig-stat-label">Seguidos</span>
+          </div>
+        </div>
+        <div class="ig-bio">
+          💆🏼‍♀️❤️ Distribuidores de productos de peluquería para vos, para tu salón o perfumería. Contacto: 2227-537300
+        </div>
+        <div class="ig-buttons">
+          <button class="ig-btn ig-btn-primary" onclick="window.open('https://www.instagram.com/distribuidora_fabian','_blank')">Seguir en IG</button>
+          <button class="ig-btn ig-btn-secondary" onclick="window.open('https://wa.me/5492227537300','_blank')">Mensaje</button>
+        </div>
+      </div>
+      <div class="ig-grid">
+        <!-- Post grid cells con gradientes temáticos -->
+        <div class="ig-grid-item">
+          <div class="ig-grid-item-bg" style="background:linear-gradient(135deg,#f8d7da,#e8a0a8);display:flex;align-items:center;justify-content:center;font-size:1.8rem;height:100%">🪮</div>
+        </div>
+        <div class="ig-grid-item">
+          <div class="ig-grid-item-bg" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);display:flex;align-items:center;justify-content:center;font-size:1.8rem;height:100%">💅</div>
+        </div>
+        <div class="ig-grid-item">
+          <div class="ig-grid-item-bg" style="background:linear-gradient(135deg,#e8d5f5,#c39bd3);display:flex;align-items:center;justify-content:center;font-size:1.8rem;height:100%">💄</div>
+        </div>
+        <div class="ig-grid-item">
+          <div class="ig-grid-item-bg" style="background:linear-gradient(135deg,#fef9c3,#f9d423);display:flex;align-items:center;justify-content:center;font-size:1.8rem;height:100%">✨</div>
+        </div>
+        <div class="ig-grid-item">
+          <div class="ig-grid-item-bg" style="background:linear-gradient(135deg,#d7f8e8,#80cbc4);display:flex;align-items:center;justify-content:center;font-size:1.8rem;height:100%">🧴</div>
+        </div>
+        <div class="ig-grid-item">
+          <div class="ig-grid-item-bg" style="background:linear-gradient(135deg,#ffe0b2,#ffab40);display:flex;align-items:center;justify-content:center;font-size:1.8rem;height:100%">💛</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARCAS STRIP -->
+<div class="marcas-strip">
+  <div class="marcas-track">
+    <span class="marca-pill accent">✦ PRIMONT</span>
+    <span class="marca-pill">NOUVELLE</span>
+    <span class="marca-pill accent">✦ IDI MAKE UP</span>
+    <span class="marca-pill">KIT SEMIPERMANENTE</span>
+    <span class="marca-pill accent">✦ POLLIE</span>
+    <span class="marca-pill">CUIDADO DEL CABELLO</span>
+    <span class="marca-pill accent">✦ MAQUILLAJE PROFESIONAL</span>
+    <span class="marca-pill">UÑAS & NAILS</span>
+    <!-- repeat for marquee -->
+    <span class="marca-pill accent">✦ PRIMONT</span>
+    <span class="marca-pill">NOUVELLE</span>
+    <span class="marca-pill accent">✦ IDI MAKE UP</span>
+    <span class="marca-pill">KIT SEMIPERMANENTE</span>
+    <span class="marca-pill accent">✦ POLLIE</span>
+    <span class="marca-pill">CUIDADO DEL CABELLO</span>
+    <span class="marca-pill accent">✦ MAQUILLAJE PROFESIONAL</span>
+    <span class="marca-pill">UÑAS & NAILS</span>
+  </div>
+</div>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="nosotros-grid">
+    <div class="nosotros-visual reveal-left">
+      <div class="nosotros-img-main">
+        <div class="nosotros-img-main-inner">🌸</div>
+      </div>
+      <div class="nosotros-img-accent">
+        <div class="nosotros-img-accent-inner">💆🏼‍♀️</div>
+      </div>
+      <div class="nosotros-badge">
+        <div class="nosotros-badge-num counter" data-target="10">0</div>
+        <div class="nosotros-badge-text">años distribuyendo<br>confianza</div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <span class="section-label">Quiénes somos</span>
+      <h2 class="section-title">Tu aliada en<br>belleza profesional</h2>
+      <p class="section-sub" style="margin-bottom:1.2rem">
+        Somos distribuidores de productos de peluquería y cosmética para particulares, salones y perfumerías. Trabajamos con las mejores marcas del mercado para que siempre tengas lo que necesitás.
+      </p>
+      <p class="section-sub">
+        Desde productos capilares hasta maquillaje profesional y kits de semipermanente — todo en un solo lugar, con la atención personalizada que te merecés. ❤️
+      </p>
+      <div class="stats-row">
+        <div class="stat-block">
+          <div class="stat-block-num"><span class="counter" data-target="1173">0</span></div>
+          <div class="stat-block-desc">Seguidores en Instagram</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block-num"><span class="counter" data-target="207">0</span></div>
+          <div class="stat-block-desc">Productos publicados</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block-num"><span class="counter" data-target="5">0</span><span>+</span></div>
+          <div class="stat-block-desc">Marcas reconocidas</div>
+        </div>
+      </div>
+      <div class="pills-list">
+        <span class="pill">💇 Cuidado Capilar</span>
+        <span class="pill">💅 Uñas & Nails</span>
+        <span class="pill">💄 Maquillaje</span>
+        <span class="pill">🧴 Tratamientos</span>
+        <span class="pill">✨ Depilación</span>
+        <span class="pill">🛒 Mayor y Menor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<div class="productos-section" id="productos">
+  <div class="productos-inner">
+    <div class="productos-header reveal">
+      <div>
+        <span class="section-label">Nuestros productos</span>
+        <h2 class="section-title">Lo mejor en belleza<br>profesional</h2>
+      </div>
+      <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20ver%20el%20cat%C3%A1logo%20completo%20🛍️" class="btn-primary" target="_blank">Ver catálogo completo →</a>
+    </div>
+    <div class="productos-grid">
+      <!-- Primont -->
+      <div class="product-card stagger">
+        <div class="product-card-img" style="background:linear-gradient(135deg,#f8d7da,#e8a0a8)">🪮</div>
+        <div class="product-card-body">
+          <div class="product-tag">Cuidado Capilar</div>
+          <div class="product-name">Línea Primont</div>
+          <div class="product-desc">Nutre, revitaliza y equilibra. Con aceite de argán para cabellos ondulados y gruesos.</div>
+          <div class="product-footer">
+            <a href="https://wa.me/5492227537300?text=Hola!%20Me%20interesa%20la%20línea%20Primont%20💇" class="product-cta" target="_blank">Consultar</a>
+            <span class="product-badge">🌿 Natural</span>
+          </div>
+        </div>
+      </div>
+      <!-- Nouvelle -->
+      <div class="product-card stagger">
+        <div class="product-card-img" style="background:linear-gradient(135deg,#e8d5f5,#c39bd3)">✨</div>
+        <div class="product-card-body">
+          <div class="product-tag">Tratamientos</div>
+          <div class="product-name">Línea Nouvelle</div>
+          <div class="product-desc">Especial para cabellos sensibilizados. Hidratación y brillo intensos. ¡25% OFF en productos seleccionados!</div>
+          <div class="product-footer">
+            <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20saber%20sobre%20la%20línea%20Nouvelle%20✨" class="product-cta" target="_blank">Consultar</a>
+            <span class="product-badge" style="background:#fef3c7;color:#b45309">🔖 -25%</span>
+          </div>
+        </div>
+      </div>
+      <!-- IDI MakeUp -->
+      <div class="product-card stagger">
+        <div class="product-card-img" style="background:linear-gradient(135deg,#fce4ec,#f48fb1)">💄</div>
+        <div class="product-card-body">
+          <div class="product-tag">Maquillaje</div>
+          <div class="product-name">IDI Make Up</div>
+          <div class="product-desc">Máscara voluminizadora, rubores duo y delineadores. Línea hipoalergénica resistente al agua.</div>
+          <div class="product-footer">
+            <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20info%20sobre%20IDI%20Make%20Up%20💄" class="product-cta" target="_blank">Consultar</a>
+            <span class="product-badge">💧 Waterproof</span>
+          </div>
+        </div>
+      </div>
+      <!-- Kit Semipermanente -->
+      <div class="product-card stagger">
+        <div class="product-card-img" style="background:linear-gradient(135deg,#fff0f0,#ffb3ba)">💅</div>
+        <div class="product-card-body">
+          <div class="product-tag">Uñas & Nails</div>
+          <div class="product-name">Kit Semipermanente</div>
+          <div class="product-desc">3 esmaltes a elección + cabina LED + 3 limas + 1 primer. ¡Kit completo para tu salón!</div>
+          <div class="product-footer">
+            <a href="https://wa.me/5492227537300?text=Hola!%20Me%20interesa%20el%20Kit%20Semipermanente%20💅" class="product-cta" target="_blank">Consultar</a>
+            <span class="product-badge">🎁 Kit</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cera depilación -->
+      <div class="product-card stagger">
+        <div class="product-card-img" style="background:linear-gradient(135deg,#fffde7,#f9d423)">🌡️</div>
+        <div class="product-card-body">
+          <div class="product-tag">Depilación</div>
+          <div class="product-name">Cera Pollie + Jalea</div>
+          <div class="product-desc">Fundidor calentador de cera profesional con jalea de regalo incluida. Ideal para salones.</div>
+          <div class="product-footer">
+            <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20info%20sobre%20la%20cera%20Pollie%20🌡️" class="product-cta" target="_blank">Consultar</a>
+            <span class="product-badge">🎁 + Regalo</span>
+          </div>
+        </div>
+      </div>
+      <!-- Purificación Primont -->
+      <div class="product-card stagger">
+        <div class="product-card-img" style="background:linear-gradient(135deg,#d7f8e8,#80cbc4)">🧴</div>
+        <div class="product-card-body">
+          <div class="product-tag">Cabello Sensibilizado</div>
+          <div class="product-name">Primont Purificación</div>
+          <div class="product-desc">Purificación extrema. Para mantener tratamientos en cabellos sensibilizados con hidratación y brillo.</div>
+          <div class="product-footer">
+            <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20saber%20sobre%20Primont%20Purificación%20🧴" class="product-cta" target="_blank">Consultar</a>
+            <span class="product-badge">💎 Pro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CÓMO COMPRÁS -->
+<section id="como">
+  <div class="como-grid">
+    <div>
+      <span class="section-label reveal">Proceso de compra</span>
+      <h2 class="section-title reveal">Comprar es<br>muy fácil</h2>
+      <div class="steps-list">
+        <div class="step stagger">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Escribinos por WhatsApp</div>
+            <div class="step-desc">Mandanos un mensajito al 2227-537300 o al 2227-505805 y te respondemos rápido. ¡Sin vueltas!</div>
+          </div>
+        </div>
+        <div class="step stagger">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Elegís tus productos</div>
+            <div class="step-desc">Te mostramos el catálogo completo y te asesoramos para que elijas lo mejor para vos o tu salón.</div>
+          </div>
+        </div>
+        <div class="step stagger">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Confirmás y pagás</div>
+            <div class="step-desc">Efectivo, transferencia o el medio que más te quede cómodo. Contado efectivo con beneficios especiales.</div>
+          </div>
+        </div>
+        <div class="step stagger">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">¡Recibís tu pedido!</div>
+            <div class="step-desc">Retiro en local o coordinamos la entrega. Rápido, seguro y con la misma calidad de siempre. ✅</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="como-right reveal-right">
+      <div class="como-big-card">
+        <div class="como-card-label">💎 Para salones profesionales</div>
+        <h3 class="como-card-title">Somos tu <em>distribuidora</em> de confianza</h3>
+        <p class="como-card-desc">¿Tenés un salón de peluquería, perfumería o spa? Trabajamos con precios especiales para profesionales. Consultá por tu descuento mayorista.</p>
+        <div class="como-card-feat">
+          <div class="como-feat">
+            <div class="como-feat-icon">✅</div>
+            Precios mayoristas para salones
+          </div>
+          <div class="como-feat">
+            <div class="como-feat-icon">✅</div>
+            Marcas premium reconocidas
+          </div>
+          <div class="como-feat">
+            <div class="como-feat-icon">✅</div>
+            Atención personalizada
+          </div>
+          <div class="como-feat">
+            <div class="como-feat-icon">✅</div>
+            También vendemos al por menor
+          </div>
+          <div class="como-feat">
+            <div class="como-feat-icon">✅</div>
+            Descuentos contado efectivo
+          </div>
+        </div>
+        <br>
+        <a href="https://wa.me/5492227537300?text=Hola!%20Soy%20profesional%20y%20me%20interesan%20precios%20mayoristas%20💼" class="btn-white" style="margin-top:.5rem" target="_blank">
+          💬 Consultar precios pro
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<div class="galeria-section" id="galeria">
+  <div class="galeria-inner">
+    <span class="section-label reveal">Nuestros productos</span>
+    <h2 class="section-title reveal">Belleza que se <em style="font-style:italic;color:var(--rose-light)">ve y se siente</em></h2>
+    <div class="galeria-grid">
+      <div class="galeria-item reveal">
+        <div class="galeria-bg" style="background:linear-gradient(135deg,#4a1a2a,var(--rose),#e07b8a);height:100%">
+          <span style="font-size:5rem">🌸</span>
+        </div>
+        <div class="galeria-overlay"><span>Línea completa de peluquería</span></div>
+      </div>
+      <div class="galeria-item stagger">
+        <div class="galeria-bg" style="background:linear-gradient(135deg,#3d1f4e,#c39bd3);height:100%">
+          <span style="font-size:3rem">💅</span>
+        </div>
+        <div class="galeria-overlay"><span>Kits semipermanentes</span></div>
+      </div>
+      <div class="galeria-item stagger">
+        <div class="galeria-bg" style="background:linear-gradient(135deg,#4a2c1a,#e68a5a);height:100%">
+          <span style="font-size:3rem">💄</span>
+        </div>
+        <div class="galeria-overlay"><span>IDI Make Up</span></div>
+      </div>
+      <div class="galeria-item stagger">
+        <div class="galeria-bg" style="background:linear-gradient(135deg,#1a3a4a,#5bb8d4);height:100%">
+          <span style="font-size:3rem">🧴</span>
+        </div>
+        <div class="galeria-overlay"><span>Tratamientos capilares</span></div>
+      </div>
+      <div class="galeria-item stagger">
+        <div class="galeria-bg" style="background:linear-gradient(135deg,#2a4a1a,#7ec87e);height:100%">
+          <span style="font-size:3rem">✨</span>
+        </div>
+        <div class="galeria-overlay"><span>Línea Nouvelle</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="testimonios-header reveal">
+    <span class="section-label">Lo que dicen</span>
+    <h2 class="section-title">Clientes que confían<br>en nosotros ❤️</h2>
+    <p class="section-sub">La confianza de nuestros clientes es lo que nos mueve a seguir creciendo cada día.</p>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonial-card stagger">
+      <div class="t-quote">"</div>
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <div class="t-text">Re buena atención, siempre tienen todo lo que necesito para mi salón. Los productos de Primont que consigo acá son lo mejor para mis clientas.</div>
+      <div class="t-author">
+        <img src="https://ui-avatars.com/api/?name=Valeria+Lopez&background=c8586c&color=fff&size=80" class="t-avatar" alt="Valeria">
+        <div>
+          <div class="t-name">Valeria L.</div>
+          <div class="t-role">Peluquera profesional</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card stagger">
+      <div class="t-quote">"</div>
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <div class="t-text">Compro los kits de semipermanente acá hace meses. Calidad excelente, precio justo y me asesoran siempre muy bien. 100% recomendado! 💅</div>
+      <div class="t-author">
+        <img src="https://ui-avatars.com/api/?name=Daniela+Garcia&background=e07b8a&color=fff&size=80" class="t-avatar" alt="Daniela">
+        <div>
+          <div class="t-name">Daniela G.</div>
+          <div class="t-role">Nailista</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card stagger">
+      <div class="t-quote">"</div>
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <div class="t-text">Encontré la línea IDI Make Up acá y no la compro en otro lado. Envío rápido y siempre tienen stock. Son muy atentos por WhatsApp. ¡Gracias!</div>
+      <div class="t-author">
+        <img src="https://ui-avatars.com/api/?name=Mariana+Torres&background=c9a96e&color=fff&size=80" class="t-avatar" alt="Mariana">
+        <div>
+          <div class="t-name">Mariana T.</div>
+          <div class="t-role">Maquilladora</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="padding:2rem 5% 5rem">
+  <div class="cta-banner reveal">
+    <div class="cta-banner-label">🚀 ¿Listo para empezar?</div>
+    <h2 class="cta-banner-title">Tu salón merece los<br><em>mejores productos</em></h2>
+    <p class="cta-banner-sub">Escribinos hoy y recibí asesoramiento personalizado. Para particulares, salones y perfumerías. ❤️</p>
+    <div class="cta-banner-actions">
+      <a href="https://wa.me/5492227537300?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20💆🏼‍♀️" class="btn-white" target="_blank">
+        💬 Escribir por WhatsApp
+      </a>
+      <a href="https://www.instagram.com/distribuidora_fabian" class="btn-outline-white" target="_blank">
+        📸 Ver Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-grid">
+    <div class="reveal-left">
+      <span class="section-label">Contacto</span>
+      <h2 class="section-title">Hablemos<br>hoy mismo</h2>
+      <p class="section-sub" style="margin-bottom:2rem">¿Tenés alguna consulta? Escribinos o llamanos y te respondemos lo antes posible. 💆🏼‍♀️</p>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Teléfono / WhatsApp</div>
+            <div class="contact-info-val">
+              <a href="tel:2227537300">2227-537300</a> &nbsp;|&nbsp; <a href="tel:2227505805">2227-505805</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📸</div>
+          <div>
+            <div class="contact-info-label">Instagram</div>
+            <div class="contact-info-val"><a href="https://www.instagram.com/distribuidora_fabian" target="_blank">@distribuidora_fabian</a></div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🛒</div>
+          <div>
+            <div class="contact-info-label">Horario de atención</div>
+            <div class="contact-info-val">Lunes a Sábado · Respondemos por WhatsApp</div>
+          </div>
+        </div>
+      </div>
+      <div class="social-row">
+        <a href="https://www.instagram.com/distribuidora_fabian" class="social-btn social-ig" target="_blank" title="Instagram">📸</a>
+        <a href="https://wa.me/5492227537300" class="social-btn social-wa" target="_blank" title="WhatsApp">💬</a>
+        <a href="https://www.facebook.com/distribuidora.fabian" class="social-btn social-fb" target="_blank" title="Facebook">👍</a>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div style="background:white;border-radius:24px;padding:2.5rem;box-shadow:0 4px 30px rgba(61,42,42,.08);border:1px solid rgba(200,88,108,.08)">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.4rem">¿Qué productos necesitás?</h3>
+        <p style="font-size:.83rem;color:var(--text-muted);margin-bottom:1.5rem">Dejanos tu consulta y te respondemos rápido 💆🏼‍♀️</p>
+        <div class="contact-form">
+          <input type="text" placeholder="Tu nombre" id="cf-nombre">
+          <input type="tel" placeholder="Tu WhatsApp" id="cf-tel">
+          <textarea placeholder="¿Qué productos buscás?" id="cf-msg"></textarea>
+          <button class="btn-primary" style="width:100%;justify-content:center;border:none;cursor:pointer" onclick="sendWA()">
+            💬 Enviar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Distribuidora <span>Fabián</span></div>
+  <div class="footer-tagline">Productos de peluquería y belleza para vos, tu salón y tu perfumería 💆🏼‍♀️❤️</div>
+  <div class="footer-links">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#productos">Productos</a>
+    <a href="#como">Cómo comprar</a>
+    <a href="#testimonios">Reseñas</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://www.instagram.com/distribuidora_fabian" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">© 2026 Distribuidora Fabián · Todos los derechos reservados · <a href="https://wa.me/5492226438044" style="color:var(--rose);text-decoration:none" target="_blank">Web by digitAI motor</a></div>
+</footer>
+
+<script>
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  function animateCursor() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    cursorRing.style.left = rx + 'px';
+    cursorRing.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width = '22px'; cursor.style.height = '22px'; cursorRing.style.width = '50px'; cursorRing.style.height = '50px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width = '14px'; cursor.style.height = '14px'; cursorRing.style.width = '36px'; cursorRing.style.height = '36px'; });
+  });
+
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── HAMBURGER ──
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // ── INTERSECTION OBSERVER (reveal + stagger + counter) ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        // stagger delay via index
+        if (el.classList.contains('stagger')) {
+          const siblings = [...el.parentElement.querySelectorAll('.stagger')];
+          const idx = siblings.indexOf(el);
+          setTimeout(() => el.classList.add('visible'), idx * 100);
+        } else {
+          el.classList.add('visible');
+        }
+        // counter
+        el.querySelectorAll('.counter').forEach(c => startCounter(c));
+        if (el.classList.contains('counter')) startCounter(el);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => io.observe(el));
+
+  function startCounter(el) {
+    const target = parseInt(el.dataset.target || el.textContent);
+    if (!target || el._counted) return;
+    el._counted = true;
+    const dur = 1800;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * target).toLocaleString('es-AR');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ── PARALLAX ──
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const blob = document.querySelector('.hero-blob');
+    if (blob) blob.style.transform = `translateY(${y * 0.3}px)`;
+  }, { passive: true });
+
+  // ── WHATSAPP FORM ──
+  function sendWA() {
+    const nombre = document.getElementById('cf-nombre').value || 'Sin nombre';
+    const tel = document.getElementById('cf-tel').value || '';
+    const msg = document.getElementById('cf-msg').value || '';
+    const text = encodeURIComponent(`Hola! Soy ${nombre}${tel ? ' ('+tel+')' : ''}. ${msg}`);
+    window.open('https://wa.me/5492227537300?text=' + text, '_blank');
+  }
+
+  // ── SMOOTH SCROLL LINKS ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>
