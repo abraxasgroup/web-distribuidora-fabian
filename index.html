@@ -79,6 +79,10 @@ nav.s{background:rgba(12,8,8,.88);backdrop-filter:blur(16px);box-shadow:0 1px 30
 .btn-o:hover{border-color:var(--rose);color:var(--rose);transform:translateY(-2px)}
 .hero-r{position:relative;z-index:1;display:flex;justify-content:center;align-items:center;padding:4rem 8% 4rem 2%}
 .hero-card-wrap{position:relative;width:100%;max-width:360px}
+.hero-photo-wrap{position:relative;width:100%;max-width:380px;border-radius:24px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.5),0 0 0 1px var(--border);opacity:0;transform:translateY(30px) scale(.97);animation:fu .9s .7s forwards}
+.hero-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,8,16,.25),transparent 40%);pointer-events:none}
+.hero-photo{width:100%;height:auto;display:block;transition:transform .6s ease}
+.hero-photo-wrap:hover .hero-photo{transform:scale(1.04)}
 .hero-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);opacity:0;transform:translateY(30px) scale(.97);animation:fu .9s .7s forwards}
 .hc-top{background:linear-gradient(135deg,var(--surface2),#1a1010);padding:1.8rem}
 .hc-row{display:flex;align-items:center;gap:.9rem;margin-bottom:1.2rem}
@@ -389,38 +393,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 8
     </div>
   </div>
   <div class="hero-r">
-    <div class="f-badge fb1"><span>📦</span><div><div class="f-badge-val">207</div><div style="font-size:.62rem;color:var(--muted);font-weight:500">publicaciones</div></div></div>
-    <div class="f-badge fb2"><span>❤️</span><div><div class="f-badge-val">1.173</div><div style="font-size:.62rem;color:var(--muted);font-weight:500">seguidores</div></div></div>
-    <div class="hero-card-wrap">
-      <div class="hero-card">
-        <div class="hc-top">
-          <div class="hc-row">
-            <div class="hc-avatar"><div class="hc-avatar-in">DF</div></div>
-            <div>
-              <div class="hc-name">Distribuidora Fabián <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#1877f2"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
-              <div class="hc-handle">@distribuidora_fabian</div>
-            </div>
-          </div>
-          <div class="hc-stats">
-            <div class="hcs"><span class="hcs-num">207</span><span class="hcs-lbl">Posts</span></div>
-            <div class="hcs"><span class="hcs-num">1.173</span><span class="hcs-lbl">Seguidores</span></div>
-            <div class="hcs"><span class="hcs-num">923</span><span class="hcs-lbl">Seguidos</span></div>
-          </div>
-          <div class="hc-bio">💆🏼‍♀️❤️ Distribuidores de productos de peluquería para vos, para tu salón o perfumería. Lobos y la zona.</div>
-          <div class="hc-btns">
-            <button class="hc-btn hc-btn-p" onclick="window.open('https://www.instagram.com/distribuidora_fabian','_blank')">Seguir en IG</button>
-            <button class="hc-btn hc-btn-s" onclick="window.open('https://wa.me/5492227505805','_blank')">Mensaje</button>
-          </div>
-        </div>
-        <div class="hc-grid">
-          <div class="hcg-i"><div class="hcg-bg" style="background:linear-gradient(135deg,#f8d7da,#e8a0a8);height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem">🪮</div></div>
-          <div class="hcg-i"><div class="hcg-bg" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem">💅</div></div>
-          <div class="hcg-i"><div class="hcg-bg" style="background:linear-gradient(135deg,#e8d5f5,#c39bd3);height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem">💄</div></div>
-          <div class="hcg-i"><div class="hcg-bg" style="background:linear-gradient(135deg,#fff8dc,#f9d423);height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem">✨</div></div>
-          <div class="hcg-i"><div class="hcg-bg" style="background:linear-gradient(135deg,#d7f8e8,#80cbc4);height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem">🧴</div></div>
-          <div class="hcg-i"><div class="hcg-bg" style="background:linear-gradient(135deg,#ffe0b2,#ffab40);height:100%;display:flex;align-items:center;justify-content:center;font-size:1.8rem">🌡️</div></div>
-        </div>
-      </div>
+    <div class="f-badge fb1"><span>📦</span><div><div class="f-badge-val">10+</div><div style="font-size:.62rem;color:var(--muted);font-weight:500">marcas</div></div></div>
+    <div class="f-badge fb2"><span>💜</span><div><div class="f-badge-val">1.173</div><div style="font-size:.62rem;color:var(--muted);font-weight:500">seguidores</div></div></div>
+    <div class="hero-photo-wrap">
+      <img src="assets/hero.png" alt="Distribuidora Fabián - Todo para el peinador" class="hero-photo">
     </div>
   </div>
 </div>
@@ -817,18 +793,22 @@ function loadFallbackProducts() {
     {id:'4',nombre:'Shampoo Control Caspa PRIMONT',categoria:'capilar',descripcion:'Cuidado especial para cabellos con caspa. Limpieza profunda y equilibrio del cuero cabelludo.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-shampo-caspa.jpg'},
     {id:'5',nombre:'Shampoo BTX PRIMONT 400ml',categoria:'capilar',descripcion:'Vitalidad + protección del color. Con aminoácidos para cabello procesado.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-shampoo-btx.jpg'},
     {id:'6',nombre:'Shampoo Queration PRIMONT 400ml',categoria:'capilar',descripcion:'Volumen + antifrizz con Q10 y queratina. Ideal para cabello fino.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-shampoo-queration.jpg'},
-    {id:'7',nombre:'Crema Oxigenada 20/30 vol x100 PRIMONT',categoria:'capilar',descripcion:'Crema oxidante estabilizada. Presentación 100ml. 20 o 30 volúmenes.',precio:'1922',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-oxigenada-100.jpg'},
-    {id:'8',nombre:'Crema Oxigenada x1000 PRIMONT',categoria:'capilar',descripcion:'Crema oxidante 10 vol. Presentación 1 litro para uso profesional.',precio:'7762',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-oxigenada-1000.jpg'},
-    {id:'9',nombre:'Crema Oxidante Oxi Plus x1000 PRIMONT',categoria:'capilar',descripcion:'Alta performance. Crema oxidante estabilizada 20 vol x 1000ml.',precio:'10395',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-oxiplus.jpg'},
-    {id:'10',nombre:'Revelador 9/13 vol x120 PRIMONT',categoria:'capilar',descripcion:'Revelador color gloss. Presentación 120ml.',precio:'2720',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-revelador-120.jpg'},
-    {id:'11',nombre:'Polvo Decolorante 700g PRIMONT',categoria:'capilar',descripcion:'Polvo decolorante profesional de alta potencia. 700 gramos.',precio:'32005',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-decolorante-700.jpg'},
-    {id:'12',nombre:'Quitamancha Tintura x120 PRIMONT',categoria:'capilar',descripcion:'Color Away. Quita manchas de tintura de la piel. 120ml.',precio:'3598',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-quitamancha.jpg'},
-    {id:'13',nombre:'BabyLiss Plancha Pro',categoria:'herramientas',descripcion:'Plancha profesional de cerámica. Temperatura regulable. Resultados de salón.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'babyliss-plancha.jpg'},
-    {id:'14',nombre:'Teknipro Secador Profesional',categoria:'herramientas',descripcion:'Secador de alta potencia con difusor y concentrador incluidos.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'teknipro-secador.jpg'},
-    {id:'15',nombre:'YekniStyle Esmalte Semipermanente',categoria:'unas',descripcion:'Amplia variedad de colores. Larga duración y fácil aplicación.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'yeknistyle-semi.jpg'},
-    {id:'16',nombre:'Depimiel Cera + Calentador',categoria:'depilacion',descripcion:'Calentador profesional 1kg con jalea de regalo. Ideal para salones.',precio:'0',precio_anterior:'',badge:'REGALO',activo:'SI',imagen:'depimiel-cera.jpg'},
-    {id:'17',nombre:'Exel Línea Make Up',categoria:'maquillaje',descripcion:'Máscara voluminizadora, rubores y delineadores. Línea hipoalergénica.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'exel-makeup.jpg'},
-    {id:'18',nombre:'Kit Manicura Completo',categoria:'kits',descripcion:'3 esmaltes a elección + cabina LED + 3 limas + 1 primer.',precio:'0',precio_anterior:'',badge:'KIT PRO',activo:'SI',imagen:'kit-manicura.jpg'},
+    {id:'7',nombre:'Shampoo Neutro PRIMONT',categoria:'capilar',descripcion:'pH balanceado. Para todo tipo de cabello. Uso frecuente.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'shampoo-neutro.jpg'},
+    {id:'8',nombre:'Ampolla Capilar BTX PRIMONT x4',categoria:'capilar',descripcion:'Vitalidad + protección del color. Con aminoácidos para cabello procesado. 4 ampollas.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'ampolla-btx.jpg'},
+    {id:'9',nombre:'Tintura Natural Color Gloss PRIMONT',categoria:'capilar',descripcion:'Coloración natural sin amoníaco. Brillo y cobertura con ingredientes de origen vegetal.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-color-natural.jpg'},
+    {id:'10',nombre:'Gel de Afeitar Barber PRIMONT',categoria:'maquillaje',descripcion:'Línea Barber. Gel de afeitar edición limitada. 300ml. Para barbería profesional.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'gel-deafeitar.jpg'},
+    {id:'11',nombre:'Crema Oxigenada 20/30 vol x100 PRIMONT',categoria:'capilar',descripcion:'Crema oxidante estabilizada. Presentación 100ml. 20 o 30 volúmenes.',precio:'1922',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-oxigenada-100.jpg'},
+    {id:'12',nombre:'Crema Oxigenada x1000 PRIMONT',categoria:'capilar',descripcion:'Crema oxidante 10 vol. Presentación 1 litro para uso profesional.',precio:'7762',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-oxigenada-1000.jpg'},
+    {id:'13',nombre:'Crema Oxidante Oxi Plus x1000 PRIMONT',categoria:'capilar',descripcion:'Alta performance. Crema oxidante estabilizada 20 vol x 1000ml.',precio:'10395',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-oxiplus.jpg'},
+    {id:'14',nombre:'Revelador 9/13 vol x120 PRIMONT',categoria:'capilar',descripcion:'Revelador color gloss. Presentación 120ml.',precio:'2720',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-revelador-120.jpg'},
+    {id:'15',nombre:'Polvo Decolorante 700g PRIMONT',categoria:'capilar',descripcion:'Polvo decolorante profesional de alta potencia. 700 gramos.',precio:'32005',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-decolorante-700.jpg'},
+    {id:'16',nombre:'Quitamancha Tintura x120 PRIMONT',categoria:'capilar',descripcion:'Color Away. Quita manchas de tintura de la piel. 120ml.',precio:'3598',precio_anterior:'',badge:'',activo:'SI',imagen:'primont-quitamancha.jpg'},
+    {id:'17',nombre:'BabyLiss Plancha Pro',categoria:'herramientas',descripcion:'Plancha profesional de cerámica. Temperatura regulable. Resultados de salón.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'babyliss-plancha.jpg'},
+    {id:'18',nombre:'Teknipro Secador Profesional',categoria:'herramientas',descripcion:'Secador de alta potencia con difusor y concentrador incluidos.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'teknipro-secador.jpg'},
+    {id:'19',nombre:'YekniStyle Esmalte Semipermanente',categoria:'unas',descripcion:'Amplia variedad de colores. Larga duración y fácil aplicación.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'yeknistyle-semi.jpg'},
+    {id:'20',nombre:'Depimiel Cera + Calentador',categoria:'depilacion',descripcion:'Calentador profesional 1kg con jalea de regalo. Ideal para salones.',precio:'0',precio_anterior:'',badge:'REGALO',activo:'SI',imagen:'depimiel-cera.jpg'},
+    {id:'21',nombre:'Exel Línea Make Up',categoria:'maquillaje',descripcion:'Máscara voluminizadora, rubores y delineadores. Línea hipoalergénica.',precio:'0',precio_anterior:'',badge:'',activo:'SI',imagen:'exel-makeup.jpg'},
+    {id:'22',nombre:'Kit Manicura Completo',categoria:'kits',descripcion:'3 esmaltes a elección + cabina LED + 3 limas + 1 primer.',precio:'0',precio_anterior:'',badge:'KIT PRO',activo:'SI',imagen:'kit-manicura.jpg'},
   ];
   renderGrid(allProducts);
 }
