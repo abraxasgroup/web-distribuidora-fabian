@@ -49,7 +49,7 @@
   --text:     #e8e0ed;
   --muted:    rgba(232,224,237,.5);
   --border:   rgba(168,120,184,.14);
-  --nav-h:    68px;
+  --nav-h:    96px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -378,12 +378,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 8
 
 /* ── LOGO transparente ── */
 .nav-logo-img {
-  height: 72px; width: auto;
+  height: 110px; width: auto; max-width: 320px;
   filter: brightness(1.65) drop-shadow(0 0 8px rgba(168,120,220,0.35));
-  transition: filter .3s, transform .3s;
+  transition: filter .3s, transform .3s, height .3s;
 }
 nav.s .nav-logo-img {
-  height: 58px;
+  height: 80px;
   filter: brightness(1.5) drop-shadow(0 0 10px rgba(168,120,220,0.45));
 }
 .nav-logo-img:hover {
